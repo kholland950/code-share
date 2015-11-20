@@ -1,12 +1,19 @@
 package controllers;
 
+import models.DAOFactory;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.twirl.api.Html;
+import util.ViewUtil;
 import views.html.index;
+import views.html.structure;
+
+import static util.ViewUtil.applyToStructure;
 
 public class Application extends Controller {
 
     public Result index() {
-        return ok(index.render());
+        Html content = index.apply(DAOFactory.getSnippetDAO().findRecent());
+        return ok(applyToStructure(content));
     }
 }

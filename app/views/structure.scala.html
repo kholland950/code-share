@@ -1,0 +1,52 @@
+@(content: Html)
+
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="screen" href="//cdn.muicss.com/mui-0.2.1/css/mui.css" />
+        <link href="@routes.Assets.versioned("stylesheets/main.css")" rel="stylesheet" type="text/css"/>
+        <link href="@routes.Assets.versioned("font-awesome-4.4.0/css/font-awesome.min.css")" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="@routes.Assets.versioned("codemirror/codemirror.css")">
+        <link href="" rel="stylesheet">
+        <script src="@routes.Assets.versioned("codemirror/codemirror.js")"></script>
+        <script src="@routes.Assets.versioned("codemirror/placeholder.js")"></script>
+        <script type="text/javascript" src="//cdn.muicss.com/mui-0.2.1/js/mui.js"></script>
+    </head>
+    <body>
+        <header id="appbar" class="mui-appbar primary-color">
+            <div class="mui-container">
+                <table width="100%">
+                    <tbody>
+                        <tr class="mui--appbar-height">
+                            <td class="mui--text-title appbar-text">
+                                <a class="logo" href="@routes.Application.index()">
+                                    <div class="logo">CodeShare</div>
+                                </a>
+                            </td>
+                            <td align="center">
+                                <form class="mui-form--inline" action="/search" method="GET">
+                                    <div class="container-4">
+                                        <input type="search" id="search" placeholder="Search..." name="tag" autocomplete="off"/>
+                                        <button type="submit" class="icon"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </form>
+                            </td>
+                            <td align="right">
+                                <ul id="appbar-links" class="mui-list--inline mui--text-body2 appbar-text">
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="#">Explore</a></li>
+                                    <li><a href="#">About</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </header>
+        @* Html content of page goes here *@
+        @content
+    </body>
+</html>

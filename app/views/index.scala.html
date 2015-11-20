@@ -1,18 +1,11 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="@routes.Assets.versioned("mui-0.2.0/css/mui.min.css")" rel="stylesheet" type="text/css" />
-        <script src="@routes.Assets.versioned("mui-0.2.0/js/mui.min.js")"></script>
-    </head>
-    <body>
-        <div class="mui-container">
-            <div class="mui-panel">
-                <h1>CodeShare</h1>
-                <button class="mui-btn mui-btn--primary mui-btn--raised">test</button>
-            </div>
+@import java.util
+@(snippets: util.List[Snippet])
+
+<div class="mui-container">
+    <div class="mui-panel content">
+        <div class="new-share-div">
+            <a href="@routes.EditSnippet.newSnippet()" class="mui-btn mui-btn--fab mui-btn--primary primary-color button" type="submit">+</a>
         </div>
-    </body>
-</html>
+        @recentSnippets(snippets)
+    </div>
+</div>

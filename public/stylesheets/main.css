@@ -1,0 +1,151 @@
+/**
+* Header css
+*/
+.primary-color {
+  background-color: #3F51B5; }
+
+.appbar-text {
+  font-weight: 200 !important; }
+
+#appbar {
+  box-shadow: 0 0 15px #555 !important;
+  position: relative; }
+
+div.content {
+  box-shadow: 0 0 5px #555; }
+
+input.button {
+  box-shadow: 0 0 10px #555; }
+  input.button:hover {
+    box-shadow: 0 0 5px #555; }
+
+header a {
+  color: white; }
+  header a:hover {
+    color: white;
+    text-decoration: underline; }
+  header a:visited {
+    color: white;
+    text-decoration: none; }
+  header a.logo {
+    text-decoration: none;
+    transition: text-shadow .3s ease-in-out; }
+    header a.logo:hover {
+      text-shadow: 0 0 10px #bbb;
+      transition: text-shadow .1s; }
+    header a.logo:active {
+      text-shadow: 0 0 8px #333; }
+header ul.mui-list--inline {
+  margin-bottom: 0; }
+
+header button {
+  text-transform: none !important; }
+  header button:hover {
+    color: #111 !important; }
+
+.mui-btn:hover {
+  background-color: #999; }
+
+/** fixes search place holder color*/
+header ::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #BBB !important; }
+header ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #BBB !important;
+  opacity: 1; }
+header :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #BBB !important; }
+
+/**
+* Content css
+*/
+.new-share-div {
+  float: right;
+  position: relative; }
+  .new-share-div a.button:active, .new-share-div :focus {
+    background-color: #999 !important; }
+
+a.snippet-link {
+  color: #000;
+  text-decoration: none; }
+
+.snippet-preview {
+  width: 50%;
+  box-shadow: 0 0 8px;
+  transition: box-shadow 0.3s ease-in-out, background-color 0.5s, margin-left .2s; }
+  .snippet-preview:hover {
+    box-shadow: 0 0 3px;
+    background-color: #efefef;
+    margin-left: -10px; }
+  .snippet-preview:active {
+    background-color: #ccc;
+    margin-left: 0; }
+
+#code-snippet-input {
+  height: 400px;
+  color: #000; }
+
+.CodeMirror-empty {
+  color: grey !important; }
+
+/** Fixes language selector options covered by code gutter */
+.mui-select__menu {
+  z-index: 5 !important; }
+
+.CodeMirror-gutters {
+  z-index: 0 !important; }
+
+/**
+ * search bar css
+ */
+.container-4 {
+  overflow: hidden;
+  width: 300px;
+  vertical-align: middle;
+  white-space: nowrap; }
+
+.container-4 input#search {
+  width: 300px;
+  height: 40px;
+  background: #fff;
+  border: none;
+  font-size: 10pt;
+  float: left;
+  color: #000;
+  padding-left: 15px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px; }
+
+div.container-4 {
+  margin-top: 5px;
+  margin-bottom: 5px; }
+
+.container-4 button.icon {
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: none;
+  background: #fff;
+  height: 40px;
+  width: 50px;
+  color: #999;
+  opacity: 0;
+  font-size: 10pt;
+  -webkit-transition: all .55s ease;
+  -moz-transition: all .55s ease;
+  -ms-transition: all .55s ease;
+  -o-transition: all .55s ease;
+  transition: all .55s ease; }
+
+.container-4:hover button.icon, .container-4:active button.icon, .container-4:focus button.icon {
+  outline: none;
+  opacity: 1;
+  margin-left: -50px; }
+
+/*# sourceMappingURL=main.css.map */

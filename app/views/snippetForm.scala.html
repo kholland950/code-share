@@ -1,0 +1,33 @@
+@(data: Form[Snippet])
+
+@import helper._
+
+@form(routes.EditSnippet.save()) {
+    <fieldset>
+        <legend>New snippet</legend>
+        <div class="mui-textfield">
+            <input name="title" type="text" placeholder="what does this snippet do?">
+        </div>
+        <div class="mui-textfield">
+            <input name="tags" type="text" placeholder="#tags">
+        </div>
+        <div class="mui-select">
+            <select name="language" id="language-select">
+                <option value="" class="mui--is-disabled">Select language...</option>
+                <option value="c++">C++</option>
+                <option value="java">Java</option>
+                <option value="python">Python</option>
+            </select>
+        </div>
+        <div class="mui-textfield">
+            <textarea name="code" id="code-snippet-input" placeholder="you.write(code);"></textarea>
+        </div>
+        <button type="submit" class="mui-btn mui-btn--raised mui-btn--primary primary-color">Submit</button>
+    </fieldset>
+
+    <script>
+        var editor = CodeMirror.fromTextArea(document.getElementById("code-snippet-input"), {
+            lineNumbers: true
+        });
+    </script>
+}

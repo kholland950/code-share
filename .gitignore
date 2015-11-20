@@ -7,3 +7,15 @@ target
 /.settings
 /RUNNING_PID
 project/.sbtserver*
+/project/project
+bin/
+/db
+.eclipse
+/lib/
+/modules
+tmp/
+test-result
+server.pid
+*.eml
+/dist/
+.cache
