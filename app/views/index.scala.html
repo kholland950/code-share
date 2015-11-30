@@ -1,11 +1,6 @@
 @import java.util
 @(snippets: util.List[Snippet])
 
-<div class="mui-container">
-    <div class="mui-panel content">
-        <div class="new-share-div">
-            <a href="@routes.EditSnippet.newSnippet()" class="mui-btn mui-btn--fab mui-btn--primary primary-color button" type="submit">+</a>
-        </div>
-        @recentSnippets(snippets)
-    </div>
-</div>
+@snippetList(snippets) {
+    <h1>recent snippets</h1>
+}

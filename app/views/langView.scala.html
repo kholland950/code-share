@@ -1,0 +1,10 @@
+@(language: String)
+
+<button name="@language" class="mui-btn mui-btn--accent accent-color lang-button">@language</button>
+
+<script>
+    $("[name='@language']").click(function(e) {
+        window.location = "/explore/@language";
+        e.preventDefault();
+    });
+</script>

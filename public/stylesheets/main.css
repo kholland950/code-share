@@ -1,8 +1,11 @@
 /**
 * Header css
 */
-.primary-color {
-  background-color: #3F51B5; }
+.primary-color, .mui-btn:focus {
+  background-color: #115B79; }
+
+.accent-color {
+  background-color: #ED8E9C; }
 
 .appbar-text {
   font-weight: 200 !important; }
@@ -43,7 +46,7 @@ header button {
   header button:hover {
     color: #111 !important; }
 
-.mui-btn:hover {
+.mui-btn:hover, .mui-btn:active {
   background-color: #999; }
 
 /** fixes search place holder color*/
@@ -67,12 +70,14 @@ header :-ms-input-placeholder {
   .new-share-div a.button:active, .new-share-div :focus {
     background-color: #999 !important; }
 
+table.snippet-table {
+  width: 60%; }
+
 a.snippet-link {
   color: #000;
   text-decoration: none; }
 
 .snippet-preview {
-  width: 50%;
   box-shadow: 0 0 8px;
   transition: box-shadow 0.3s ease-in-out, background-color 0.5s, margin-left .2s; }
   .snippet-preview:hover {
@@ -83,12 +88,41 @@ a.snippet-link {
     background-color: #ccc;
     margin-left: 0; }
 
+.snippet-prev-title {
+  padding-top: 0;
+  float: left;
+  width: 45%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap; }
+
+.snippet-prev-lang {
+  float: right;
+  padding-top: 10px; }
+
+.snippet-prev-date {
+  margin-left: 50%;
+  white-space: nowrap; }
+
 #code-snippet-input {
   height: 400px;
   color: #000; }
 
+.v-center {
+  display: flex;
+  align-items: center; }
+
+.CodeMirror {
+  border: #999;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0 0 2px #555; }
+
 .CodeMirror-empty {
   color: grey !important; }
+
+.warning {
+  color: #F50057; }
 
 /** Fixes language selector options covered by code gutter */
 .mui-select__menu {

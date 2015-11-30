@@ -1,9 +1,8 @@
 package models;
 
-import org.springframework.jdbc.core.JdbcTemplate;
-
 import javax.sql.DataSource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -36,23 +35,42 @@ public class SnippetDAO extends DAO {
         return snippet;
     }
 
+    public List<Snippet> findWithLikeTitle(String title) {
+        title = String.format("%%%s%%", title);
+        final String sql = "SELECT * FROM snippet WHERE title LIKE ? " +
+                "ORDER by date_added DESC LIMIT 50";
+
+        return queryForSnippets(sql, title);
+    }
+
+    public List<Snippet> findByLanguage(String language) {
+        final String sql = "SELECT * FROM snippet WHERE language=? " +
+                "ORDER by date_added DESC LIMIT 50";
+
+        return queryForSnippets(sql, language);
+    }
+
     public List<Snippet> findAll() {
         return null;
     }
 
-    @SuppressWarnings("unchecked")
     public List<Snippet> findRecent() {
         final String sql = "SELECT * FROM snippet " +
-                "ORDER BY date_added DESC LIMIT 30";
+                "ORDER BY date_added DESC LIMIT 50";
 
+        return queryForSnippets(sql);
+    }
+
+    private List<Snippet> queryForSnippets(String sql, Object... sqlArgs) {
         List<Snippet> snippets = new ArrayList<>();
-        List<Map<String, Object>> rows =  jdbcTemplate.queryForList(sql);
+        List<Map<String, Object>> rows =  jdbcTemplate.queryForList(sql, sqlArgs);
         for (Map row : rows) {
             Snippet snippet  = new Snippet();
             snippet.id = (Long)row.get("id");
             snippet.title = (String)row.get("title");
             snippet.language = (String)row.get("language");
             snippet.code = (String)row.get("code");
+            snippet.dateAdded = (Date)row.get("date_added");
             snippets.add(snippet);
         }
 

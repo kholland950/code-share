@@ -1,11 +1,13 @@
 package models;
 
+import org.ocpsoft.pretty.time.PrettyTime;
 import org.springframework.jdbc.core.JdbcTemplate;
 import play.data.validation.ValidationError;
 import play.db.DB;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,12 +16,15 @@ import java.util.List;
 public class Snippet {
     public Long id;
     public String title;
-    //TODO this should be List<Tag> but Tag doesn't exist yet
-    public String tags;
     public String language;
     public String code;
+    public Date dateAdded;
 
-    public Snippet() {}
+    public Snippet() {
+        title = "";
+        language = "";
+        code = "";
+    }
 
     public List<ValidationError> validate() {
         List<ValidationError> errors = new ArrayList<>();
@@ -42,5 +47,10 @@ public class Snippet {
         } else {
             return errors;
         }
+    }
+
+    public String getPrettyTime() {
+        PrettyTime p = new PrettyTime();
+        return p.format(dateAdded);
     }
 }

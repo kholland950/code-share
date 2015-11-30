@@ -1,0 +1,11 @@
+@(selected: String = "")
+@import util.LangUtil;
+
+<div class="mui-select">
+    <select name="language" id="language-select">
+        <option value="" class="mui--is-disabled">select language...</option>
+        @for(language <- LangUtil.supportedLanguages) {
+            <option value="@language" @if(language==selected) { selected="selected" } >@language</option>
+        }
+    </select>
+</div>

@@ -1,33 +1,80 @@
-@(data: Form[Snippet])
+@(snippet: Snippet = new Snippet())
 
 @import helper._
-
-@form(routes.EditSnippet.save()) {
+@form(routes.EditSnippet.save(), 'id->"snippet-form") {
     <fieldset>
-        <legend>New snippet</legend>
+        <legend>new snippet</legend>
         <div class="mui-textfield">
-            <input name="title" type="text" placeholder="what does this snippet do?">
+            <input name="title" type="text" autocomplete="off" placeholder="what does this snippet do?"
+            value="@snippet.title"/>
         </div>
+        @languageSelect(snippet.language)
         <div class="mui-textfield">
-            <input name="tags" type="text" placeholder="#tags">
+            <textarea name="code" id="code-snippet-input" placeholder="you.write(code);">@snippet.code</textarea>
         </div>
-        <div class="mui-select">
-            <select name="language" id="language-select">
-                <option value="" class="mui--is-disabled">Select language...</option>
-                <option value="c++">C++</option>
-                <option value="java">Java</option>
-                <option value="python">Python</option>
-            </select>
-        </div>
-        <div class="mui-textfield">
-            <textarea name="code" id="code-snippet-input" placeholder="you.write(code);"></textarea>
-        </div>
-        <button type="submit" class="mui-btn mui-btn--raised mui-btn--primary primary-color">Submit</button>
+        <h3 id="error-label" class="warning mui--hidden-md"></h3>
+        <button id="submit-snippet" type="submit" class="mui-btn mui-btn--raised mui-btn--primary primary-color">Submit</button>
     </fieldset>
-
     <script>
         var editor = CodeMirror.fromTextArea(document.getElementById("code-snippet-input"), {
-            lineNumbers: true
+            lineNumbers: true,
+            smartIndent: true
         });
+
+        var errorLabel = $("#error-label");
+        var titleInput = $("[name='title']");
+        var langSelect = $("#language-select");
+
+        var missing = "";
+
+        editor.on("change", function(cm, change) {
+            if (missing == "code") {
+                hideError();
+                missing = "";
+            }
+        });
+        titleInput.keydown(function() {
+            if (missing == "title") {
+                hideError();
+                missing = "";
+            }
+        });
+        langSelect.change(function() {
+            if (missing == "language") {
+                hideError();
+                missing = "";
+            }
+        });
+
+        $("#snippet-form").submit(function(e) {
+            var codePlaceholder = $("pre.CodeMirror-placeholder");
+
+            if (titleInput.val() == "") {
+                e.preventDefault();
+                missing = "title";
+                showError("describe what the snippet does");
+            } else if (titleInput.val().length > 127) {
+                e.preventDefault();
+                missing = "title";
+                showError("snippet title is limited to 127 characters. have a lot to say? put it in code comments")
+            } else if (langSelect.val() == "") {
+                e.preventDefault();
+                missing = "language";
+                showError("select a language");
+            } else if (codePlaceholder.length == 1) {
+                e.preventDefault();
+                missing = "code";
+                showError("enter code for the snippet");
+            }
+        });
+
+        function showError(text, event) {
+            errorLabel.text(text);
+            errorLabel.removeClass("mui-hidden-md");
+        }
+        function hideError() {
+            errorLabel.text("");
+            errorLabel.addClass("mui-hidden-md");
+        }
     </script>
 }

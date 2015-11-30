@@ -10,9 +10,9 @@
         <link href="@routes.Assets.versioned("stylesheets/main.css")" rel="stylesheet" type="text/css"/>
         <link href="@routes.Assets.versioned("font-awesome-4.4.0/css/font-awesome.min.css")" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="@routes.Assets.versioned("codemirror/codemirror.css")">
-        <link href="" rel="stylesheet">
         <script src="@routes.Assets.versioned("codemirror/codemirror.js")"></script>
         <script src="@routes.Assets.versioned("codemirror/placeholder.js")"></script>
+        <script src="@routes.Assets.versioned("jquery/jquery-2.1.4.js")"></script>
         <script type="text/javascript" src="//cdn.muicss.com/mui-0.2.1/js/mui.js"></script>
     </head>
     <body>
@@ -23,22 +23,24 @@
                         <tr class="mui--appbar-height">
                             <td class="mui--text-title appbar-text">
                                 <a class="logo" href="@routes.Application.index()">
-                                    <div class="logo">CodeShare</div>
+                                    <div class="logo">codeshare</div>
                                 </a>
                             </td>
                             <td align="center">
-                                <form class="mui-form--inline" action="/search" method="GET">
-                                    <div class="container-4">
-                                        <input type="search" id="search" placeholder="Search..." name="tag" autocomplete="off"/>
-                                        <button type="submit" class="icon"><i class="fa fa-search"></i></button>
-                                    </div>
-                                </form>
+                                <div class="mui-form--inline">
+                                    <form action="/search" method="GET">
+                                        <div class="container-4">
+                                            <input type="search" id="search" placeholder="Search..." name="term" autocomplete="off"/>
+                                            <button type="submit" class="icon"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
                             </td>
                             <td align="right">
                                 <ul id="appbar-links" class="mui-list--inline mui--text-body2 appbar-text">
-                                    <li><a href="/">Home</a></li>
-                                    <li><a href="#">Explore</a></li>
-                                    <li><a href="#">About</a></li>
+                                    <li><a href="/">home</a></li>|
+                                    <li><a href="/explore/Java">explore</a></li>|
+                                    <li><a href="/about">about</a></li>
                                 </ul>
                             </td>
                         </tr>
@@ -49,4 +51,9 @@
         @* Html content of page goes here *@
         @content
     </body>
+    <footer>
+        <p align="center">Copyright © Kevin Holland 2015 | Contact:
+            <a href="mailto:kholland950@@capital.edu">kholland950@@capital.edu</a>.
+        </p>
+    </footer>
 </html>

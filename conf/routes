@@ -4,9 +4,13 @@
 
 # Home page
 GET     /                           controllers.Application.index()
+GET     /about                      controllers.Application.about()
+GET     /explore                    controllers.Explore.explore(language = "")
+GET     /explore/:language          controllers.Explore.explore(language: String)
 GET     /new-snippet                controllers.EditSnippet.newSnippet()
+GET     /search                     controllers.Search.doSearch(term: String)
 GET     /snippet/:id                controllers.ViewSnippet.view(id: Long)
-GET     /snippet/:id/edit           controllers.EditSnippet.editSnippet(id: Long)
-POST     /new-snippet/save           controllers.EditSnippet.save()
+GET     /snippet/:id/fork           controllers.EditSnippet.forkSnippet(id: Long)
+POST    /new-snippet/save           controllers.EditSnippet.save()
 # Map static resources from the /public folder to the /public URL path
 GET     /public/*file               controllers.Assets.versioned(path="/public", file: Asset)

@@ -1,0 +1,27 @@
+@import java.util
+@(language: String = "Java", snippets: util.List[Snippet])
+
+@snippetList(snippets) {
+    @if(language == "") {
+        <h3>select a language</h3>
+    }
+    <ul class="mui-list--inline">
+        <li><h2>explore</h2></li>
+        <li>
+            @languageSelect()
+        </li>
+    </ul>
+    @if(language != "") {
+        <h2>@language snippets</h2>
+    }
+    <script>
+        var languageSelect = $("#language-select");
+        languageSelect.val('@language');
+
+        languageSelect.change(function() {
+            if (this.value != "") {
+                window.location = "/explore/" + this.value;
+            }
+        });
+    </script>
+}

@@ -6,8 +6,8 @@ import models.SnippetDAO;
 import play.data.Form;
 import play.mvc.Result;
 import play.mvc.Controller;
-import util.ViewUtil;
-import views.html.structure;
+import views.html.newcode;
+import views.html.snippetForm;
 import views.html.viewSnippet;
 
 import static util.ViewUtil.applyToStructure;
@@ -17,22 +17,24 @@ import static util.ViewUtil.applyToStructure;
  * @author kevinholland
  */
 public class EditSnippet extends Controller {
-    private Form<Snippet> snippetForm = Form.form(Snippet.class);
+    private Form<Snippet> form = Form.form(Snippet.class);
+    private Snippet snippet = new Snippet();
 
-    public Result editSnippet(Long snippetId) {
-        return ok(views.html.structure.apply(views.html.newcode.apply(snippetForm)));
+    public Result forkSnippet(Long snippetId) {
+        SnippetDAO snippetDAO = DAOFactory.getSnippetDAO();
+        Snippet snippet = snippetDAO.findById(snippetId);
+        return ok(views.html.structure.apply(views.html.newcode.apply(snippet)));
     }
 
     public Result newSnippet() {
-        return ok(views.html.structure.apply(views.html.newcode.apply(snippetForm)));
+        return ok(views.html.structure.apply(views.html.newcode.apply(new Snippet())));
     }
 
     public Result save() {
         // Get the submitted form data from the request object, and run validation.
-        Form<Snippet> boundForm = snippetForm.bindFromRequest();
+        Form<Snippet> boundForm = form.bindFromRequest();
         if (boundForm.hasErrors()) {
-            flash("error", "correct errors");
-            return ok();
+            return ok(applyToStructure(newcode.apply(snippet)));
         }
 
         Snippet snippet = boundForm.get();

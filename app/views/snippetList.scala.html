@@ -1,0 +1,45 @@
+@import java.util
+@(snippets: util.List[Snippet])(header: Html)
+
+<div class="mui-container">
+    <div class="mui-panel content">
+        <div class="new-share-div">
+            <a href="@routes.EditSnippet.newSnippet()" class="mui-btn mui-btn--fab mui-btn--primary primary-color button" type="submit">
+                +</a>
+        </div>
+        <div class="mui-container">
+            @header
+            @if(snippets == null || snippets.size() == 0) {
+                <h3>no snippets</h3>
+            } else {
+                <h3>@snippets.size() snippet@if(snippets.size()>1){s}</h3>
+                <table class="mui-table snippet-table">
+                    <tbody>
+                    @for(snippet <- snippets) {
+                        <tr>
+                            <td>
+                                <a href="/snippet/@snippet.id" class="snippet-link">
+                                    <div class="mui-panel snippet-preview">
+                                        <div class="snippet-prev-title"><h3>@snippet.title</h3></div>
+                                        <div class="snippet-prev-lang">@langView(snippet.language)</div>
+                                        <div class="snippet-prev-date"><h3>@snippet.getPrettyTime()</h3></div>
+                                    </div>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    $(".snippet-prev-title").each(function() {
+        if (this.offsetWidth < this.scrollWidth) {
+            $("<h3 style='float: left'>...</h3>").insertAfter(this);
+        }
+    });
+
+</script>
