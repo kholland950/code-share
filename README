@@ -1,4 +1,24 @@
-This is your new Play application
-=================================
+codeshare is a web application for sharing code with fellow developers.
 
-This file will be packaged with your application, when using `activator dist`.
+http://code-share.duckdns.org/
+
+functionality:
+
+post snippets with a short description and language tag
+view others' recent snippets
+explore snippets by language
+search for snippets by description
+fork a snippet you want to make a copy of or alter
+technologies used:
+
+java
+play framework
+mysql/jdbc
+prettytime
+jquery
+codemirror
+font-awesome
+mui css framework
+This project was for a research project at Capital University in Bexley, Ohio, USA.
+
+Designed/coded by Kevin Holland.
